@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:product_app/view/home/widget.dart';
 
 import '../../widgets/widgets.dart';
 
@@ -50,13 +51,7 @@ class HomeView extends StatelessWidget {
               addAutomaticKeepAlives: true,
               itemCount: 19,
               itemBuilder: (context, index) {
-                return Card(
-                  child: ListTile(
-                    title: Text('Item $index'),
-                    subtitle: Text('Item $index'),
-                    trailing: const Icon(Icons.arrow_forward_ios),
-                  ),
-                );
+                return const Center(child: ProductCard());
               }),
         ],
       ),
