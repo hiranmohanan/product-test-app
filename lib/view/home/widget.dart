@@ -29,6 +29,7 @@ class _ProductCardState extends State<ProductCard> {
         );
       },
       child: Stack(
+        alignment: AlignmentDirectional.topCenter,
         children: [
           Container(
             margin: const EdgeInsets.symmetric(horizontal: 10),

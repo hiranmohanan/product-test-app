@@ -18,6 +18,7 @@ class HomeView extends StatelessWidget {
             context.read<ProductBloc>().add(Productget('all'));
           },
           child: CustomScrollView(
+            shrinkWrap: true,
             physics: const AlwaysScrollableScrollPhysics(),
             slivers: [
               SliverAppBar(
