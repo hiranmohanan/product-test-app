@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:product_app/constants/constants.dart';
 
 import '../../bloc/auth/auth_bloc.dart';
+import '../../widgets/widgets.dart';
 
 class PinLoginView extends StatefulWidget {
   const PinLoginView({Key? key});
@@ -76,13 +77,5 @@ class _PinLoginViewState extends State<PinLoginView> {
         );
       },
     ));
-  }
-
-  InputDecoration inutDecoration({required String label}) {
-    return InputDecoration(
-      counterText: '',
-      border: const OutlineInputBorder(),
-      labelText: label,
-    );
   }
 }

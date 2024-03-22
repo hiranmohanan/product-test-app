@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:product_app/bloc/auth/auth_bloc.dart';
 import 'package:product_app/constants/constants.dart';
 
+import '../../widgets/widgets.dart';
 import 'auth_widget.dart';
 
 class SingupView extends StatefulWidget {
@@ -216,20 +217,6 @@ class _SingupViewState extends State<SingupView> {
           );
         },
       ),
-    );
-  }
-
-  InputDecoration inutDecoration({required String label}) {
-    return InputDecoration(
-      counterText: '',
-      border: const OutlineInputBorder(),
-      labelText: label,
-    );
-  }
-
-  Widget loading() {
-    return const Center(
-      child: CircularProgressIndicator(),
     );
   }
 }

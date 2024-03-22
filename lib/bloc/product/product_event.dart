@@ -15,7 +15,7 @@ class Productdelete extends ProductEvent {
 }
 
 class Productget extends ProductEvent {
-  final ProductModel product;
+  final String product;
 
   Productget(this.product);
 }

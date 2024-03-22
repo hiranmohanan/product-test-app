@@ -4,6 +4,8 @@ import 'package:product_app/bloc/auth/auth_bloc.dart';
 import 'package:product_app/constants/constants.dart';
 import 'package:product_app/view/auth/auth_widget.dart';
 
+import '../../widgets/widgets.dart';
+
 class LoginView extends StatefulWidget {
   const LoginView({super.key});
 
@@ -151,19 +153,5 @@ class _LoginViewState extends State<LoginView> {
             );
           },
         ));
-  }
-
-  InputDecoration inutDecoration({required String label}) {
-    return InputDecoration(
-      counterText: '',
-      border: const OutlineInputBorder(),
-      labelText: label,
-    );
-  }
-
-  Widget loading() {
-    return const Center(
-      child: CircularProgressIndicator(),
-    );
   }
 }

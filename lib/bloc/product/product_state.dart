@@ -20,8 +20,8 @@ class ProductFailure extends ProductState {
 
 class ProductDeleteLoading extends ProductState {}
 
-class ProductAdd extends ProductState {
+class ProductAddSuccess extends ProductState {
   final ProductModel product;
 
-  ProductAdd(this.product);
+  ProductAddSuccess(this.product);
 }

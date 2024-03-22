@@ -38,3 +38,23 @@ void looutbuttonfn(BuildContext context) {
         );
       });
 }
+
+InputDecoration inutDecoration({required String label}) {
+  return InputDecoration(
+    counterText: '',
+    border: const OutlineInputBorder(),
+    labelText: label,
+  );
+}
+
+Widget loading() {
+  return const Center(
+    child: CircularProgressIndicator(),
+  );
+}
+
+showsnackbar({required String error, required BuildContext context}) {
+  ScaffoldMessenger.of(context).showSnackBar(
+    SnackBar(content: Text('Error Loading Product $error')),
+  );
+}

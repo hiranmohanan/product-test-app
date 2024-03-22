@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hive/hive.dart';
 import 'package:product_app/bloc/auth/auth_bloc.dart';
+import 'package:product_app/bloc/product/product_bloc.dart';
 import 'package:product_app/firebase_options.dart';
 import 'package:product_app/hive/hive.dart';
 import 'package:product_app/view/auth/pin_login_view.dart';
@@ -39,8 +40,15 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiBlocProvider(
       providers: [
-        BlocProvider(create: (_) => SplashBloc()),
-        BlocProvider(create: (_) => AuthBloc()),
+        BlocProvider(
+          create: (_) => SplashBloc(),
+        ),
+        BlocProvider(
+          create: (_) => AuthBloc(),
+        ),
+        BlocProvider(
+          create: (_) => ProductBloc(),
+        ),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
