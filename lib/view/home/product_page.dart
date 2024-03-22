@@ -23,9 +23,8 @@ class ProductPageView extends StatelessWidget {
                 ),
                 const SizedBox(height: 10),
                 QrImageView(
-                    data: pmodel.name! +
-                        pmodel.price.toString() +
-                        pmodel.quantity.toString(),
+                    data:
+                        'name:-${pmodel.name} \n price:-${pmodel.price} \n measurment:-${pmodel.measurement}',
                     size: 300),
                 const SizedBox(height: 10),
                 Text(
@@ -43,10 +42,10 @@ class ProductPageView extends StatelessWidget {
                   style: Theme.of(context).textTheme.labelLarge,
                 ),
                 const SizedBox(height: 10),
-                TextButton.icon(
-                    onPressed: () {},
-                    icon: const Icon(Icons.highlight_remove_outlined),
-                    label: const Text('Remove Product')),
+                // TextButton.icon(
+                //     onPressed: () {},
+                //     icon: const Icon(Icons.highlight_remove_outlined),
+                //     label: const Text('Remove Product')),
               ],
             ),
           ),

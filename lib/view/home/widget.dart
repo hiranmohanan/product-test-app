@@ -88,9 +88,8 @@ class _ProductCardState extends State<ProductCard> {
                 color: Colors.white,
               ),
               child: QrImageView(
-                  data: widget.pmodel.name! +
-                      widget.pmodel.price.toString() +
-                      widget.pmodel.quantity.toString(),
+                  data:
+                      'name:-${widget.pmodel.name}\n  price:-${widget.pmodel.price}\n  measurment:-${widget.pmodel.measurement}',
                   size: 100),
             ),
           ),
@@ -277,7 +276,7 @@ class _SerachBoxState extends State<SerachBox> {
   Widget build(BuildContext context) {
     return SearchBar(
       controller: searchController,
-      hintText: 'Search Product',
+      hintText: 'Search Product Name',
       onChanged: (value) {
         context.read<ProductBloc>().add(Productget(value));
       },
