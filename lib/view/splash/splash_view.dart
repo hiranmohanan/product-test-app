@@ -22,7 +22,7 @@ class SplashScreenView extends StatelessWidget {
               ScaffoldMessenger.of(context).showSnackBar(
                 SnackBar(
                   content: Text(state.error),
-                  duration: const Duration(seconds: 2),
+                  duration: const Duration(milliseconds: 5000),
                 ),
               );
             }
@@ -32,17 +32,27 @@ class SplashScreenView extends StatelessWidget {
                   : Navigator.pushReplacementNamed(context, '/login');
             }
           },
-          child: const Column(
+          child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-              Spacer(),
-              LinearProgressIndicator(
-                color: Colors.black26,
-                valueColor: AlwaysStoppedAnimation<Color>(Colors.black),
+              const Spacer(),
+              Text(
+                KStrings.appName,
+                style: Theme.of(context).textTheme.headlineLarge,
               ),
-              SizedBox(height: 20),
-              Text(KStrings.loading),
-              Spacer()
+              const SizedBox(
+                height: 10,
+              ),
+              SizedBox(
+                width: MediaQuery.of(context).size.width * 0.5,
+                child: const LinearProgressIndicator(
+                  color: Colors.black26,
+                  valueColor: AlwaysStoppedAnimation<Color>(Colors.black),
+                ),
+              ),
+              const SizedBox(height: 20),
+              const Text(KStrings.loading),
+              const Spacer()
             ],
           ),
         ),
