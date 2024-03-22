@@ -55,6 +55,6 @@ Widget loading() {
 
 showsnackbar({required String error, required BuildContext context}) {
   ScaffoldMessenger.of(context).showSnackBar(
-    SnackBar(content: Text('Error Loading Product $error')),
+    SnackBar(content: Text(error)),
   );
 }

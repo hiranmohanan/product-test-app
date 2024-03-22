@@ -114,24 +114,25 @@ class _ProductAddSheetState extends State<ProductAddSheet> {
   TextEditingController quantityController = TextEditingController();
   TextEditingController measurementController = TextEditingController();
   @override
+  void initState() {
+    super.initState();
+    nameController = TextEditingController();
+    priceController = TextEditingController();
+    quantityController = TextEditingController();
+    measurementController = TextEditingController();
+  }
+
+  @override
+  void dispose() {
+    nameController.dispose();
+    priceController.dispose();
+    quantityController.dispose();
+    measurementController.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
-    @override
-    void initState() {
-      super.initState();
-      nameController = TextEditingController();
-      priceController = TextEditingController();
-      quantityController = TextEditingController();
-      measurementController = TextEditingController();
-    }
-
-    @override
-    void dispose() {
-      nameController.dispose();
-      priceController.dispose();
-      quantityController.dispose();
-      measurementController.dispose();
-    }
-
     return BottomSheet(
         onClosing: () {},
         builder: (context) {

@@ -20,25 +20,25 @@ class _SingupViewState extends State<SingupView> {
   TextEditingController confirmPasswordController = TextEditingController();
   TextEditingController pinController = TextEditingController();
   @override
+  void initState() {
+    super.initState();
+    emailController = TextEditingController();
+    passwordController = TextEditingController();
+    confirmPasswordController = TextEditingController();
+    pinController = TextEditingController();
+  }
+
+  @override
+  void dispose() {
+    emailController.dispose();
+    passwordController.dispose();
+    confirmPasswordController.dispose();
+    pinController.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
-    @override
-    void initState() {
-      super.initState();
-      emailController = TextEditingController();
-      passwordController = TextEditingController();
-      confirmPasswordController = TextEditingController();
-      pinController = TextEditingController();
-    }
-
-    @override
-    void dispose() {
-      emailController.dispose();
-      passwordController.dispose();
-      confirmPasswordController.dispose();
-      pinController.dispose();
-      super.dispose();
-    }
-
     return Scaffold(
       appBar: AppBar(
         title: const Text(KStrings.signup),

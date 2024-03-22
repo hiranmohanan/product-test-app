@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:product_app/constants/constants.dart';
+import 'package:product_app/widgets/widgets.dart';
 
 import '../../bloc/auth/auth_bloc.dart';
-import '../../widgets/widgets.dart';
 
 class PinLoginView extends StatefulWidget {
   const PinLoginView({Key? key});
@@ -13,7 +13,30 @@ class PinLoginView extends StatefulWidget {
 }
 
 class _PinLoginViewState extends State<PinLoginView> {
-  TextEditingController pinController = TextEditingController();
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+
+  // Initialize TextEditingControllers
+  List<TextEditingController> controllers =
+      List.generate(4, (index) => TextEditingController());
+
+  // Initialize FocusNodes
+  List<FocusNode> focusNodes = List.generate(4, (index) => FocusNode());
+  @override
+  void initState() {
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    for (var controller in controllers) {
+      controller.dispose();
+    }
+    for (var focusNode in focusNodes) {
+      focusNode.dispose();
+    }
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -53,21 +76,65 @@ class _PinLoginViewState extends State<PinLoginView> {
               const Spacer(),
               const Text('Enter your PIN'),
               const SizedBox(height: 20),
-              TextFormField(
-                controller: pinController,
-                obscureText: true,
-                maxLength: 4,
-                keyboardType: TextInputType.number,
-                decoration: inutDecoration(
-                  label: KStrings.pin,
+              SizedBox(
+                height: 100,
+                width: MediaQuery.of(context).size.width,
+                child: Form(
+                  key: _formKey,
+                  autovalidateMode: AutovalidateMode.onUserInteraction,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: List.generate(4, (index) {
+                      return SizedBox(
+                        width: 50,
+                        child: TextFormField(
+                          controller: controllers[index],
+                          focusNode: focusNodes[index],
+                          textAlign: TextAlign.center,
+                          keyboardType: TextInputType.number,
+                          maxLength: 1,
+                          obscureText: true,
+                          decoration: const InputDecoration(counterText: ''),
+                          autovalidateMode: AutovalidateMode.onUserInteraction,
+                          validator: (value) {
+                            if (value!.isEmpty) {
+                              return '';
+                            }
+                            return null;
+                          },
+                          onChanged: (value) {
+                            if (value.length == 1 && index < 3) {
+                              FocusScope.of(context)
+                                  .requestFocus(focusNodes[index + 1]);
+                            } else if (value.isEmpty && index != 0) {
+                              FocusScope.of(context)
+                                  .requestFocus(focusNodes[index - 1]);
+                              // Optionally, clear the previous field
+                            }
+                          },
+                          inputFormatters: [
+                            FilteringTextInputFormatter.digitsOnly
+                          ],
+                        ),
+                      );
+                    }),
+                  ),
                 ),
               ),
               const SizedBox(height: 20),
               ElevatedButton(
                 onPressed: () {
-                  context
-                      .read<AuthBloc>()
-                      .add(AuthPinLoginStarted(int.parse(pinController.text)));
+                  if (_formKey.currentState!.validate()) {
+                    final pin = controllers.fold<String>(
+                        '',
+                        (previousValue, element) =>
+                            previousValue + element.text);
+                    context
+                        .read<AuthBloc>()
+                        .add(AuthPinLoginStarted(int.parse(pin)));
+                  }
+                  showsnackbar(
+                      error: 'Please Enter Valid Pin', context: context);
                 },
                 child: const Text('Login'),
               ),

@@ -32,9 +32,9 @@ class SplashScreenView extends StatelessWidget {
                   : Navigator.pushReplacementNamed(context, '/login');
             }
           },
-          child: Column(
+          child: const Column(
             mainAxisAlignment: MainAxisAlignment.center,
-            children: const <Widget>[
+            children: <Widget>[
               Spacer(),
               LinearProgressIndicator(
                 color: Colors.black26,
