@@ -102,6 +102,22 @@ class _PinLoginViewState extends State<PinLoginView> {
                             }
                             return null;
                           },
+                          textInputAction: index == 3
+                              ? TextInputAction.done
+                              : TextInputAction.next,
+                          onFieldSubmitted: (value) {
+                            if (index == 3) {
+                              if (_formKey.currentState!.validate()) {
+                                final pin = controllers.fold<String>(
+                                    '',
+                                    (previousValue, element) =>
+                                        previousValue + element.text);
+                                context
+                                    .read<AuthBloc>()
+                                    .add(AuthPinLoginStarted(int.parse(pin)));
+                              }
+                            }
+                          },
                           onChanged: (value) {
                             if (value.length == 1 && index < 3) {
                               FocusScope.of(context)

@@ -163,6 +163,7 @@ class _ProductAddSheetState extends State<ProductAddSheet> {
                     TextFormField(
                       controller: nameController,
                       keyboardType: TextInputType.name,
+                      textInputAction: TextInputAction.next,
                       decoration: inutDecoration(
                         label: 'Product Name',
                       ),
@@ -181,6 +182,7 @@ class _ProductAddSheetState extends State<ProductAddSheet> {
                     TextFormField(
                       controller: priceController,
                       keyboardType: TextInputType.number,
+                      textInputAction: TextInputAction.next,
                       decoration: inutDecoration(
                         label: 'Product Price',
                       ),
@@ -199,6 +201,7 @@ class _ProductAddSheetState extends State<ProductAddSheet> {
                     TextFormField(
                       controller: quantityController,
                       keyboardType: TextInputType.number,
+                      textInputAction: TextInputAction.next,
                       decoration: inutDecoration(
                         label: 'Product Quantity',
                       ),
@@ -216,6 +219,7 @@ class _ProductAddSheetState extends State<ProductAddSheet> {
                     ),
                     TextFormField(
                       controller: measurementController,
+                      textInputAction: TextInputAction.done,
                       keyboardType: const TextInputType.numberWithOptions(
                           decimal: true, signed: true),
                       decoration: inutDecoration(
@@ -228,6 +232,26 @@ class _ProductAddSheetState extends State<ProductAddSheet> {
                         }
 
                         return null;
+                      },
+                      onFieldSubmitted: (value) {
+                        if (_formkey.currentState!.validate()) {
+                          context
+                              .read<ProductBloc>()
+                              .add(Productadd(ProductModel(
+                                name: nameController.text,
+                                quantity: int.parse(quantityController.text),
+                                price: double.parse(priceController.text),
+                                measurement: measurementController.text,
+                              )));
+                          // context.read<ProductBloc>().add(Productget('all'));
+                          // Navigator.of(context, rootNavigator: true).pop();
+                          Navigator.pushNamedAndRemoveUntil(
+                              context, '/home', (route) => false);
+                        } else {
+                          showsnackbar(
+                              error: 'Please Fill The Fields',
+                              context: context);
+                        }
                       },
                     ),
                     const SizedBox(

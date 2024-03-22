@@ -13,15 +13,14 @@ class SplashBloc extends Bloc<SplashEvent, SplashState> {
   Future<void> _init(SplashStarted event, Emitter<SplashState> emit) async {
     emit(SplashLoading());
     try {
-      await Future<void>.delayed(const Duration(seconds: 2), () async {
-        final responce = await FireBaseAuthProvider().checkcurrentuser();
+      await Future.delayed(const Duration(seconds: 2));
+      final responce = await FireBaseAuthProvider().checkcurrentuser();
 
-        if (responce == null) {
-          emit(SplashSuccess(logedin: false));
-        } else {
-          emit(SplashSuccess(logedin: true));
-        }
-      });
+      if (responce == null) {
+        emit(SplashSuccess(logedin: false));
+      } else {
+        emit(SplashSuccess(logedin: true));
+      }
     } catch (e) {
       emit(SplashFailure(e.toString()));
     }

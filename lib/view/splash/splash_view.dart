@@ -22,7 +22,7 @@ class SplashScreenView extends StatelessWidget {
               ScaffoldMessenger.of(context).showSnackBar(
                 SnackBar(
                   content: Text(state.error),
-                  duration: const Duration(milliseconds: 5000),
+                  duration: const Duration(milliseconds: 50),
                 ),
               );
             }
