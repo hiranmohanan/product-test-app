@@ -1,6 +1,7 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:product_app/hive/hive.dart';
+import 'package:product_app/services/local_auth_services.dart';
 
 import '../../firebase/fire_auth.dart';
 
@@ -13,6 +14,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     on<AuthPinLoginStarted>(_loginwithpin);
     on<AuthLoginStarted>(_loginwithemail);
     on<AuthLogout>(_signOut);
+    on<AuthBioMatricLoginStarted>(_biomatricLogin);
   }
 
   Future<void> _signupWithEmailAndPassword(
@@ -83,6 +85,21 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
             'Pin: ${event.pin}============================= ${hivebox.get('pin')}');
       }
       emit(AuthLoginSuccess());
+    }
+  }
+
+  Future<void> _biomatricLogin(
+      AuthBioMatricLoginStarted event, Emitter<AuthState> emit) async {
+    emit(AuthBioMatricLoginLoading());
+    try {
+      final responce = await BioMatrics().authenticateBio();
+      if (responce) {
+        emit(AuthBioMatricLoginSuccess());
+      } else {
+        emit(AuthBioMatricLoginFailure('Biometric Authentication Failed'));
+      }
+    } catch (e) {
+      emit(AuthBioMatricLoginFailure(e.toString()));
     }
   }
 }
