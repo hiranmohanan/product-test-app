@@ -24,4 +24,6 @@ class AuthPinLoginStarted extends AuthEvent {
   AuthPinLoginStarted(this.pin);
 }
 
+class AuthBioMatricLoginStarted extends AuthEvent {}
+
 class AuthLogout extends AuthEvent {}

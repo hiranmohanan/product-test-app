@@ -34,6 +34,16 @@ class AuthPinLoginFailure extends AuthState {
   AuthPinLoginFailure(this.error);
 }
 
+class AuthBioMatricLoginLoading extends AuthState {}
+
+class AuthBioMatricLoginSuccess extends AuthState {}
+
+class AuthBioMatricLoginFailure extends AuthState {
+  final String error;
+
+  AuthBioMatricLoginFailure(this.error);
+}
+
 class AuthLogoutSuccess extends AuthState {}
 
 class AuthLogoutFailure extends AuthState {

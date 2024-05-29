@@ -62,6 +62,26 @@ class _PinLoginViewState extends State<PinLoginView> {
         if (state is AuthPinLoginSuccess) {
           Navigator.pushNamedAndRemoveUntil(context, '/home', (route) => false);
         }
+        if (state is AuthBioMatricLoginSuccess) {
+          Navigator.pushNamedAndRemoveUntil(context, '/home', (route) => false);
+        }
+        if (state is AuthBioMatricLoginFailure) {
+          showAdaptiveDialog(
+              context: context,
+              builder: (context) {
+                return AlertDialog(
+                  title: const Text('Error'),
+                  content: Text(state.error),
+                  actions: [
+                    TextButton(
+                        onPressed: () {
+                          Navigator.pop(context);
+                        },
+                        child: const Text('OK'))
+                  ],
+                );
+              });
+        }
       },
       builder: (context, state) {
         if (state is AuthLoginLoading) {
@@ -136,6 +156,13 @@ class _PinLoginViewState extends State<PinLoginView> {
                     }),
                   ),
                 ),
+              ),
+              const SizedBox(height: 20),
+              TextButton(
+                onPressed: () {
+                  context.read<AuthBloc>().add(AuthBioMatricLoginStarted());
+                },
+                child: const Text('Logout'),
               ),
               const SizedBox(height: 20),
               ElevatedButton(
