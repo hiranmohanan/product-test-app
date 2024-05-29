@@ -1,3 +1,5 @@
+import 'package:local_auth/local_auth.dart';
+
 final LocalAuthentication localAuth = LocalAuthentication();
 final List<BiometricType> availableBiometrics = [];
 
