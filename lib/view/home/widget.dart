@@ -304,6 +304,9 @@ class _SerachBoxState extends State<SerachBox> {
       hintText: 'Search Product Name',
       onChanged: (value) {
         context.read<ProductBloc>().add(Productget(value));
+        if (value.isEmpty) {
+          context.read<ProductBloc>().add(Productget('all'));
+        }
       },
       trailing: [
         IconButton(

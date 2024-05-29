@@ -94,6 +94,28 @@ class HomeView extends StatelessWidget {
                   );
                 },
               ),
+              SliverToBoxAdapter(
+                  child: TweenAnimationBuilder(
+                tween: Tween<double>(begin: 0, end: 1),
+                duration: const Duration(seconds: 1),
+                builder: (context, value, child) {
+                  return Opacity(
+                    opacity: value,
+                    child: child,
+                  );
+                },
+                child: const Padding(
+                  padding: EdgeInsets.all(8.0),
+                  child: Text(
+                    'Developed By: Aman Kumar',
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ),
+              ))
             ],
           )),
       floatingActionButton: FloatingActionButton(
