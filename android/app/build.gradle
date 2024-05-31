@@ -1,8 +1,8 @@
 plugins {
     id "com.android.application"
     id "kotlin-android"
-    id "app_plugin_loader"
-    // id "dev.flutter.flutter-gradle-plugin"
+    id "dev.flutter.flutter-gradle-plugin"
+    // id "app_plugin_loader"
 }
 
 def localProperties = new Properties()

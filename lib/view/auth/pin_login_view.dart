@@ -162,7 +162,7 @@ class _PinLoginViewState extends State<PinLoginView> {
                 onPressed: () {
                   context.read<AuthBloc>().add(AuthBioMatricLoginStarted());
                 },
-                child: const Text('Logout'),
+                child: const Text('BioMatric Login  '),
               ),
               const SizedBox(height: 20),
               ElevatedButton(
